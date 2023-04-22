@@ -62,14 +62,14 @@ pipeline{
         //         }
         //     }
         // }
-        //   stage("maven package build"){
-        //      when { expression { params.action == 'create'} }
-        //     steps{
-        //         script{
-        //         Packagebuild()
-        //         }
-        //     }
-        // }
+          stage("maven package build"){
+             when { expression { params.action == 'create'} }
+            steps{
+                script{
+                Packagebuild()
+                }
+            }
+        }
         stage("docker image build"){
              when { expression { params.action == 'create'} }
              steps{
@@ -79,6 +79,18 @@ pipeline{
              }
 
         }
+
+        stage("docker image scan"){
+             when { expression { params.action == 'create'} }
+             steps{
+                script{
+                    DockerImageScane("${params.ImageName}", "${params.ImageTag}", "${params.DockerHubuser}")
+                }
+             }
+
+        }
+
+       
     }
     
 }

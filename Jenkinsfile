@@ -67,6 +67,15 @@ pipeline{
                 }
             }
         }
+        stage("docker image build"){
+             when { expression { params.action == 'create'} }
+             steps{
+                script{
+                    Dockerbuild()
+                }
+             }
+
+        }
     }
     
 }

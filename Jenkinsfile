@@ -12,7 +12,7 @@ pipeline{
     }
     stages{
 
-        stage("Git Checkout"){
+        /*stage("Git Checkout"){
         when { expression { params.action == 'create'} }
             steps{
               
@@ -22,7 +22,7 @@ pipeline{
                 )
             }
             
-        }
+        }*/
 
         stage("Unit Test with Mvn"){
              when { expression { params.action == 'create'} }

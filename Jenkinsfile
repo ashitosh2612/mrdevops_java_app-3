@@ -41,10 +41,10 @@ pipeline{
               when { expression { params.action == 'create'} }
             steps{
                 script{
-                    withSonarQubeEnv(credentialsId: 'sonar') {
-                          StaticTest()
+                   def sonarcredentialsId = 'sonar'
+                          StaticTest(sonarcredentialsId)
     
-                      }
+                      
                 }
             }
         }

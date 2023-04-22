@@ -12,7 +12,7 @@ pipeline{
     }
     stages{
 
-        /*stage("Git Checkout"){
+        stage("Git Checkout"){
         when { expression { params.action == 'create'} }
             steps{
               
@@ -22,54 +22,54 @@ pipeline{
                 )
             }
             
-        }*/
+        }
 
-        stage("Unit Test with Mvn"){
-             when { expression { params.action == 'create'} }
-            steps{
-                script{
-                    mvnTest()
-                }
-            }
-        }
-        stage("Integration Test"){
-             when { expression { params.action == 'create'} }
-            steps{
-                script{
-                    mvnintegrationTest()
-                }
-            }
-        }
-        stage("static code test by sonarqube"){
-              when { expression { params.action == 'create'} }
-            steps{
-                script{
-                   def sonarcredentialsId = 'sonar'
-                          StaticTest(sonarcredentialsId)
+        // stage("Unit Test with Mvn"){
+        //      when { expression { params.action == 'create'} }
+        //     steps{
+        //         script{
+        //             mvnTest()
+        //         }
+        //     }
+        // }
+        // stage("Integration Test"){
+        //      when { expression { params.action == 'create'} }
+        //     steps{
+        //         script{
+        //             mvnintegrationTest()
+        //         }
+        //     }
+        // }
+        // stage("static code test by sonarqube"){
+        //       when { expression { params.action == 'create'} }
+        //     steps{
+        //         script{
+        //            def sonarcredentialsId = 'sonar'
+        //                   StaticTest(sonarcredentialsId)
     
                       
-                }
-            }
-        }
-         stage("quality gate status check sonarqube"){
-              when { expression { params.action == 'create'} }
-            steps{
-                script{
-                   def gatecredentialsId = 'sonar'
-                          StaticTest(gatecredentialsId)
+        //         }
+        //     }
+        // }
+        //  stage("quality gate status check sonarqube"){
+        //       when { expression { params.action == 'create'} }
+        //     steps{
+        //         script{
+        //            def gatecredentialsId = 'sonar'
+        //                   StaticTest(gatecredentialsId)
     
                       
-                }
-            }
-        }
-          stage("maven package build"){
-             when { expression { params.action == 'create'} }
-            steps{
-                script{
-                Packagebuild()
-                }
-            }
-        }
+        //         }
+        //     }
+        // }
+        //   stage("maven package build"){
+        //      when { expression { params.action == 'create'} }
+        //     steps{
+        //         script{
+        //         Packagebuild()
+        //         }
+        //     }
+        // }
         stage("docker image build"){
              when { expression { params.action == 'create'} }
              steps{

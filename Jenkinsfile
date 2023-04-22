@@ -12,17 +12,17 @@ pipeline{
     }
     stages{
 
-        stage("Git Checkout"){
-        when { expression { params.action == 'create'} }
-            steps{
+        // stage("Git Checkout"){
+        // when { expression { params.action == 'create'} }
+        //     steps{
               
-                gitCheckout(
-                    branch: "main",
-                    url: "https://github.com/ashitosh2612/mrdevops_java_app-3.git"
-                )
-            }
+        //         gitCheckout(
+        //             branch: "main",
+        //             url: "https://github.com/ashitosh2612/mrdevops_java_app-3.git"
+        //         )
+        //     }
             
-        }
+        // }
 
         // stage("Unit Test with Mvn"){
         //      when { expression { params.action == 'create'} }

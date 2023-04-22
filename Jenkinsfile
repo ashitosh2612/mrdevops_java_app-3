@@ -10,7 +10,7 @@ pipeline{
     stages{
 
         stage("Git Checkout"){
-        when { expression { param.action == 'create'} }
+        when { expression { params.action == 'create'} }
             steps{
               
                 gitCheckout(
@@ -22,7 +22,7 @@ pipeline{
         }
 
         stage("Unit Test with Mvn"){
-             when { expression { param.action == 'create'} }
+             when { expression { params.action == 'create'} }
             steps{
                 script{
                     mvnTest()
@@ -30,7 +30,7 @@ pipeline{
             }
         }
         stage("Integration Test"){
-             when { expression { param.action == 'create'} }
+             when { expression { params.action == 'create'} }
             steps{
                 script{
                     mvnintegrationTest()
@@ -38,7 +38,7 @@ pipeline{
             }
         }
         stage("static code test by sonarqube"){
-              when { expression { param.action == 'create'} }
+              when { expression { params.action == 'create'} }
             steps{
                 script{
                     withSonarQubeEnv(credentialsId: 'sonar') {

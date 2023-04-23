@@ -100,7 +100,8 @@ pipeline{
 
         }
         stage("application deploy on eks cluster"){
-            agent { label = 'kubemaster'}
+            when { expression { params.action == 'create'} }
+            agent { label "kubemaster" }
             steps{
                 script{
                     sh ' kubectl apply -f deployment.yaml'
